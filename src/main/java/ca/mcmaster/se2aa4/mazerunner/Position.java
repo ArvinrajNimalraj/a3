@@ -15,7 +15,7 @@ public class Position {
   public int getX() { return x; }
   public int getY() { return y; }
 
-  public boolean equals(object obj) {
+  public boolean equals(Object obj) {
     if (this == obj) return true;
     if (obj == null || getClass() != obj.getClass()) return false;
     Position position = (Position) obj;
