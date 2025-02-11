@@ -1,3 +1,5 @@
+package ca.mcmaster.se2aa4.mazerunner;
+
 import org.apache.commons.cli.*;
 
 public class MazeRunnerCLI {
@@ -6,7 +8,7 @@ public class MazeRunnerCLI {
     options.addOption("i", "input", true, "Path to the maze file");
     options.addOption("p", "path", true, "Path to verify");
 
-    CommandLineParser parser =new DefaultParser();
+    CommandLineParser parser = new DefaultParser();
     try { 
         return parser.parse(options, args);
     } catch (ParseException e) {
