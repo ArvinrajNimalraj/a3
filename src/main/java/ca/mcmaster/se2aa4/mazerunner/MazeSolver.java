@@ -12,8 +12,8 @@ public class MazeSolver {
     Position currentPos = maze.getStart();
     Direction dir = determineInitialDirection(maze, currentPos);
 
-    while (!CurrentPos.equals(maze.getEnd())) {
-      if (!!maze.isWall(currentPos.move(dir.turnRight()))) {
+    while (!currentPos.equals(maze.getEnd())) {
+      if (!maze.isWall(currentPos.move(dir.turnRight()))) {
         dir = dir.turnRight();
         path.addStep('R');
         currentPos = currentPos.move(dir);
@@ -31,7 +31,7 @@ public class MazeSolver {
         path.addStep('R');
         path.addStep('R');
       }
-      logger.dedbug("Current Position: " + currentPos + " | Current Path: " + path.getCanonicalForm());
+      logger.debug("Current Position: " + currentPos + " | Current Path: " + path.getCanonicalForm());
     } 
     return path;
   }
@@ -41,7 +41,7 @@ public class MazeSolver {
       if (start.y() == 0) return Direction.DOWN;
       if (start.x() == maze.getSizeX() - 1) return Direction.LEFT;
       if (start.y() == maze.getSizeY() - 1) return Direction.UP;
-      return Direction.RIGHT
+      return Direction.RIGHT;
     }
   
 }
