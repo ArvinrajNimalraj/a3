@@ -12,7 +12,7 @@ public class MazeRunnerCLI {
     } catch (ParseException e) {
         System.err.println("Invalid command line arguments.");
         System.exit(1);
-        return null:
+        return null;
     }
   }
 }
