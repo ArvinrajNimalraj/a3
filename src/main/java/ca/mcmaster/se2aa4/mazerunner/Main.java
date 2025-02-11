@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         logger.info("** Starting Maze Runner");
-        if (cmd == numm) {
+        if (cmd == num) {
             return;
 
         String mazeFile = cmd.getOptionValue("i");
@@ -37,7 +37,7 @@ public class Main {
                 logger.info("Path computed: " + path);
             }
         } catch (IOException e) {
-              logger.error("Error reading maze file", e):
+              logger.error("Error reading maze file", e);
             }
 
         logger.info("*** End of MazeRunner ***");
