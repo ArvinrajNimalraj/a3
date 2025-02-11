@@ -30,6 +30,7 @@ public class MazeSolver {
         dir = dir.turnRight().turnRight();
         path.addStep('R');
         path.addStep('R');
+        currentPos = currentPos.move(dir);
       }
       logger.debug("Current Position: " + currentPos + " | Current Path: " + path.getCanonicalForm());
     } 
@@ -37,10 +38,10 @@ public class MazeSolver {
   }
   
     private Direction determineInitialDirection(Maze maze, Position start) {
-      if (start.x() == 0) return Direction.RIGHT;
-      if (start.y() == 0) return Direction.DOWN;
-      if (start.x() == maze.getSizeX() - 1) return Direction.LEFT;
-      if (start.y() == maze.getSizeY() - 1) return Direction.UP;
+      if (start.X() == 0) return Direction.RIGHT;
+      if (start.Y() == 0) return Direction.DOWN;
+      if (start.X() == maze.getSizeX() - 1) return Direction.LEFT;
+      if (start.Y() == maze.getSizeY() - 1) return Direction.UP;
       return Direction.RIGHT;
     }
   
