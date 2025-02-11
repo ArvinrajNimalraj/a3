@@ -22,7 +22,7 @@ public class Maze {
     logger.debug("Reading the maze from file" + filePath);
     BufferedReader reader = new BufferedReader(new FileReader(filePath));
     String line;
-    while ((line = reader.readline()) != null) {
+    while ((line = reader.readLine()) != null) {
       List<Boolean> newLone = new ArrayList<>();
       for (int idx = 0; idx < line.length(); idx++) {
         newLine.add(line.charAt(idx) == '#');
@@ -43,7 +43,7 @@ public class Maze {
         return pos;
       }
     }
-    throws new Exception("Invalid maze (no start position available)");
+    throw new Exception("Invalid maze (no start position available)");
   } 
 
 
@@ -68,11 +68,11 @@ public class Maze {
   }
 
   public Position getEnd() {
-    return end
+    return end;
   }
 
   public int getSize() {
-    return this.,aze.get(0).size();
+    return this.maze.get(0).size();
   }
 
   public int getSizeY() {
