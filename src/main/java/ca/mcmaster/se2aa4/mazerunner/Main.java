@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         logger.info("** Starting Maze Runner");
-        if (cmd == num) {
+        if (CommandLine cmd == num) {
             return;
 
         String mazeFile = cmd.getOptionValue("i");
@@ -44,7 +44,7 @@ public class Main {
         }
 
 
-    private static CommandLine parseArgments(String[] args) {
+    private static CommandLine parseArguments(String[] args) {
         Options options = new Options();
         options.addOption("i", "input", true, "Patch to the maze file");
 
