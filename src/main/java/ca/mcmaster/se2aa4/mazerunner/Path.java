@@ -11,12 +11,12 @@ public class Path {
   }
 
   public void addStep(char step) {
-    steps,add(step);
+    steps.add(step);
   }
 
   public String getCanonicalForm() {
     StringBuilder result = new StringBuilder();
-    for(char step: steps) {
+    for(char step : steps) {
       result.append(step);
     }
     return result.toString();
