@@ -59,8 +59,11 @@ public class Maze {
   }
 
 
-  public Boolean isWall(Position pos) {
-    return maze.get(pos.y()).get(pos.x());
+  public boolean isWall(Position pos) {
+    if (pos.getY() < 0 || pos,getY >= maze.size() || pos.getX() < 0 || pos.getX >= maze.get(0).size()) {
+      return true;
+    }
+    return maze.get(pos.getY()).get(pos.getX());
   }
 
   public Position getStart() {
