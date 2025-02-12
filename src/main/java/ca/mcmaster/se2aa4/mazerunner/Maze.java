@@ -17,10 +17,20 @@ public class Maze {
     private final Position end;
 
     public Maze(String filePath) throws IOException {
-        logger.info("Reading the maze from file: " + filePath);
-        
-        loadMaze(filePath);
-        validateMaze();
+        logger.debug("Reading the maze from file: " + filePath);
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+        String line;
+        while((line = reader.readline()) != null) {
+            List<Boolean> newLine = new ArrayList<>();
+            for (int idx = 0; idx < line.length(); idx++) {
+                if (line.charAt(idx) == '#') {
+                    newLine.add(true);
+                } else if (line.charAt(idx) == ' ') {
+                    newLine.add(false);
+                }
+            }
+            maze.add(newLine);
+        }
         this.start = findStart();
         this.end = findEnd();
     }
