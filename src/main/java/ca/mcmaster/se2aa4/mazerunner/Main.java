@@ -9,7 +9,7 @@ import org.apache.commons.cli.*;
 
 public class Main {
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
         logger.info("** Starting Maze Runner");
@@ -22,12 +22,10 @@ public class Main {
 
         String mazeFile = cmd.getOptionValue("i");
         try {
-            Maze maze = new Maze(mazeFile);
             logger.info("*** Maze Loaded Successfully ***");
             maze.printMaze();
 
             logger.info("*** Computing path ***");
-            MazeSolver solver = new MazeSolver();
             String path = solver.solve(maze);
 
             if (path.isEmpty()) {
