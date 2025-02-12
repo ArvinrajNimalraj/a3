@@ -16,7 +16,7 @@ public enum Direction {
       case RIGHT -> DOWN;
       case DOWN -> LEFT;
       case LEFT -> UP;
-    }
+    };
   }
   
     public Direction turnLeft() {
@@ -25,7 +25,7 @@ public enum Direction {
       case LEFT -> DOWN;
       case DOWN -> RIGHT;
       case RIGHT -> UP;
-    }
+    };
   }
 
   public int getDx() { return dx; }
