@@ -16,7 +16,9 @@ public class Main {
 
         // Parse command line arguments
         CommandLine cmd = parseArguments(args);
-        if (cmd == null) {
+        if (cmd == null || !cmd.hasOption("i")) {
+            logger.error("Missing required input file argument (-i <maze file>)");
+            System.err.println("Error: Missing required input file argument (-i <maze file>)");
             return;
         }
 
@@ -51,6 +53,7 @@ public class Main {
         try {
             return parser.parse(options, args);
         } catch (ParseException e) {
+            logger.error("Invalid arguments, Usage: -1 <maze file>", e);
             System.err.println("Invalid arguments. Usage: -i <maze file>");
             return null;
         }
