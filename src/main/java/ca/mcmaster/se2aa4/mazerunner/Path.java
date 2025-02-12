@@ -21,4 +21,8 @@ public class Path {
     }
     return result.toString();
   }
+
+    public booleean isEmpty() {
+        return steps.isEmpty();
+    }
 }
