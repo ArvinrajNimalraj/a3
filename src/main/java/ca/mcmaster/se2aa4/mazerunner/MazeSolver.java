@@ -38,10 +38,10 @@ public class MazeSolver {
   }
   
     private Direction determineInitialDirection(Maze maze, Position start) {
-      if (start.X() == 0) return Direction.RIGHT;
-      if (start.Y() == 0) return Direction.DOWN;
-      if (start.X() == maze.getSizeX() - 1) return Direction.LEFT;
-      if (start.Y() == maze.getSizeY() - 1) return Direction.UP;
+      if (start.getX() == 0) return Direction.RIGHT;
+      if (start.getY() == 0) return Direction.DOWN;
+      if (start.getX() == maze.getSizeX() - 1) return Direction.LEFT;
+      if (start.getY() == maze.getSizeY() - 1) return Direction.UP;
       return Direction.RIGHT;
     }
   
