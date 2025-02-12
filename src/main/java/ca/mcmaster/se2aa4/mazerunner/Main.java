@@ -23,12 +23,16 @@ public class Main {
         }
 
         String mazeFile = cmd.getOptionValue("i");
+        
         try {
+            Maze maze = new Maze(mazeFile);
+            MazeSolverImpl solver = new MazeSolverImpl();
+            
             logger.info("*** Maze Loaded Successfully ***");
             maze.printMaze();
 
             logger.info("*** Computing path ***");
-            String path = solver.solve(maze);
+            Path path = solver.solve(maze);
 
             if (path.isEmpty()) {
                 logger.warn("No path found!");
