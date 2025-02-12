@@ -8,7 +8,6 @@ public class MazeSolver {
 
   public Path solve(Maze maze) {
     Path path = new Path();
-
     Position currentPos = maze.getStart();
     Direction dir = determineInitialDirection(maze, currentPos);
 
@@ -30,7 +29,13 @@ public class MazeSolver {
         dir = dir.turnRight().turnRight();
         path.addStep('R');
         path.addStep('R');
+
+        iff (!maze.isWall(currentPos.move(dir))) {
         currentPos = currentPos.move(dir);
+      } else {
+          logger.error("Backtracking failed, no valid moves.");
+          break;
+        }
       }
       logger.debug("Current Position: " + currentPos + " | Current Path: " + path.getCanonicalForm());
     } 
