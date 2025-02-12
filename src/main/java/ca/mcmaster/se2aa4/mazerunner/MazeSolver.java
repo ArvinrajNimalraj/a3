@@ -30,7 +30,7 @@ public class MazeSolver {
         path.addStep('R');
         path.addStep('R');
 
-        iff (!maze.isWall(currentPos.move(dir))) {
+        if (!maze.isWall(currentPos.move(dir))) {
         currentPos = currentPos.move(dir);
       } else {
           logger.error("Backtracking failed, no valid moves.");
