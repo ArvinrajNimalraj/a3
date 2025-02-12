@@ -46,6 +46,15 @@ public class Maze {
         throw new IllegalArgumentException("Invalid maze (no end position available)");
     }
 
+    public void printMaze() {
+        for (List<Boolean> row : maze) {
+            for (Boolean isWall : row) {
+                System.out.print(isWall ? "#" : " ");
+            }
+            System.out.println();
+        }
+    }
+
     public boolean isWall(Position pos) {
         if (maze.isEmpty() || pos.getY() < 0 || pos.getY() >= maze.size() || pos.getX() < 0 || pos.getX() >= maze.get(0).size()) {
             return true;
