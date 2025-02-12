@@ -10,41 +10,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Maze {
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger(Maze.class);
 
     private final List<List<Boolean>> maze = new ArrayList<>();
     private final Position start;
     private final Position end;
 
-    public Maze(String filePath) throws Exception {
-        logger.debug("Reading the maze from file: " + filePath);
+    public Maze(String filePath) throws IOException {
+        logger.info("Reading the maze from file: " + filePath);
         
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                List<Boolean> newLine = new ArrayList<>();
-                for (int idx = 0; idx < line.length(); idx++) {
-                    newLine.add(line.charAt(idx) == '#');
-                }
-                maze.add(newLine);
-            }
-        }
-
-        start = findStart();
-        end = findEnd();
+        loadMaze(filePath);
+        validateMaze();
+        this.start = findStart();
+        this.end = findEnd();
     }
 
-    private Position findStart() throws Exception {
+    private Position findStart() {
         for (int y = 0; y < maze.size(); y++) {
             Position pos = new Position(0, y);
             if (!isWall(pos)) {
                 return pos;
             }
         }
-        throw new Exception("Invalid maze (no start position available)");
+        throw new IllegalArgumentException("No valid start position found in the maze.");
     }
 
-    private Position findEnd() throws Exception {
+    private Position findEnd() {
         int lastColumn = maze.get(0).size() - 1;
         for (int y = 0; y < maze.size(); y++) {
             Position pos = new Position(lastColumn, y);
@@ -56,7 +47,7 @@ public class Maze {
     }
 
     public boolean isWall(Position pos) {
-        if (pos.getY() < 0 || pos.getY() >= maze.size() || pos.getX() < 0 || pos.getX() >= maze.get(0).size()) {
+        if (maze.isEmpty() || pos.getY() < 0 || pos.getY() >= maze.size() || pos.getX() < 0 || pos.getX() >= maze.get(0).size()) {
             return true;
         }
         return maze.get(pos.getY()).get(pos.getX());
