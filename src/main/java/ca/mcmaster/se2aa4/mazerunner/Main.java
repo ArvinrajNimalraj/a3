@@ -27,8 +27,8 @@ public class Main {
             maze.printMaze();
 
             logger.info("*** Computing path ***");
-            MazeSolver solver = new MazeSolver(maze);
-            String path = solver.solve();
+            MazeSolver solver = new MazeSolver();
+            String path = solver.solve(maze);
 
             if (path.isEmpty()) {
                 logger.warn("No path found!");
