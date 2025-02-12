@@ -4,7 +4,7 @@ name: build
 on: push
 
 env:
-  JAVA_ENV_VERSION: '21'
+  JAVA_ENV_VERSION: '23'
 
 jobs:
 
