@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.commons.cli.*;
+import java.util.list;
 
 public class Main {
 
@@ -57,7 +58,8 @@ public class Main {
         try {
             return parser.parse(options, args);
         } catch (ParseException e) {
-            logger.error("Invalid arguments, Usage: -1 <maze file>", e);
+            logger.error("Invalid arguments, Usage: -i <maze file>");
+            logger.error("Exception: ", e);
             System.err.println("Invalid arguments. Usage: -i <maze file>");
             return null;
         }
