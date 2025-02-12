@@ -1,9 +1,7 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-public class MazeSolverImpl implements MazeSolver {
+public interface MazeSolverImpl {
 
-@Override
-  public void solveMaze(Maze maze) {
-
-  }
+Path solve (Maze maze);
+  
 }
