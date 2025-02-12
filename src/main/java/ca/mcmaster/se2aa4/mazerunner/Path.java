@@ -22,7 +22,7 @@ public class Path {
     return result.toString();
   }
 
-    public booleean isEmpty() {
+    public boolean isEmpty() {
         return steps.isEmpty();
     }
 }
