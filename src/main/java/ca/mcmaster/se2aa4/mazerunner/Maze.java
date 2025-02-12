@@ -43,7 +43,7 @@ public class Maze {
                 return pos;
             }
         }
-        throw new Exception("Invalid maze (no end position available)");
+        throw new IllegalArgumentException("Invalid maze (no end position available)");
     }
 
     public boolean isWall(Position pos) {
@@ -68,5 +68,33 @@ public class Maze {
     public int getSizeY() {
         return this.maze.size();
     }
+
+    public Boolean validatePath(Path path) {
+        return validatePathDir(path, getStart(), Direction.RIGHT, getEnd()) || validatePathDir(path, getEnd(), Direction.LEFT, getStart());
+    }
+
+    private Boolean validatePathDir(Path path, Position startPos, Direction startDir, Position endPos) {
+        Position pos = startPos;
+        Direction dir = startDir;
+        for (char c : path.getPathSteps()) {
+            switch (c) {
+                case 'F' -> {
+                    pos = pos.move(dir);
+
+                    if (pos.x() >= getSizeX() || pos.y() >= getSizeY() || pos.x() < 0 || pos.y() < 0) {
+                        return false;
+                    }
+                    if (isWall(pos)) {
+                        return false;
+                    }
+                }
+                case 'R' -> dir = dir.turnRight();
+                case 'L' -> dir = dir.turnLeft();
+            }
+            logger.debug("Current POsition: " + pos);
+        }
+        return pos.eqauls(endPos);
+    }
+    
 }
 
