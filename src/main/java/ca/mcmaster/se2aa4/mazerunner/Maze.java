@@ -93,7 +93,7 @@ public class Maze {
             }
             logger.debug("Current POsition: " + pos);
         }
-        return pos.eqauls(endPos);
+        return pos.equals(endPos);
     }
     
 }
