@@ -3,7 +3,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class MazeSolver {
+public class MazeSolver implements MazeRunner {
   private static final Logger logger = LogManager.getLogger(MazeSolver.class);
 
   public Path solve(Maze maze) {
