@@ -47,7 +47,7 @@ public class MazeSolver {
       if (start.getY() == 0) return Direction.DOWN;
       if (start.getX() == maze.getSizeX() - 1) return Direction.LEFT;
       if (start.getY() == maze.getSizeY() - 1) return Direction.UP;
-      return Direction.RIGHT;
+      return path;
     }
   
 }
