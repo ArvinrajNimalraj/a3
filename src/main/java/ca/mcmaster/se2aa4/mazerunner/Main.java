@@ -85,4 +85,21 @@ public class Main {
 
         return options;
     }
+    public static void main(String[] args) {
+        // Using Default Strategy
+        Path path = new PathBuilder()
+                .withPathString("3F 2L 4R")
+                .build();
+
+        System.out.println("Canonical Form: " + path.getCanonicalForm());
+        System.out.println("Factorized Form: " + path.getFactorizedForm());
+
+        // Using a Custom Strategy (if implemented in the future)
+        Path pathWithCustomStrategy = new PathBuilder()
+                .withPathString("F2L3R")
+                .withExpansionStrategy(new DefaultPathExpansionStrategy())
+                .build();
+
+        System.out.println("Canonical Form (Custom Strategy): " + pathWithCustomStrategy.getCanonicalForm());
+    }
 }
