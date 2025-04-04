@@ -5,18 +5,17 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Maze {
-    private static final Logger logger = LogManager.getLogger(Maze.class);
+    private static final Logger logger = LogManager.getLogger();
 
     private final List<List<Boolean>> maze = new ArrayList<>();
     private final Position start;
     private final Position end;
 
-    public Maze(String filePath) throws IOException {
+    public Maze(String filePath) throws Exception {
         logger.debug("Reading the maze from file: " + filePath);
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         String line;
@@ -31,46 +30,34 @@ public class Maze {
             }
             maze.add(newLine);
         }
-        this.start = findStart();
-        this.end = findEnd();
+        start = findStart();
+        end = findEnd();
     }
 
-    private Position findStart() {
-        for (int y = 0; y < maze.size(); y++) {
-            Position pos = new Position(0, y);
+    private Position findStart() throws Exception {
+        for (int i = 0; i < maze.size(); i++) {
+            Position pos = new Position(0, i);
             if (!isWall(pos)) {
                 return pos;
             }
         }
-        throw new IllegalArgumentException("No valid start position found in the maze.");
+        throw new Exception("No valid start position found in the maze.");
     }
 
-    private Position findEnd() {
-        int lastColumn = maze.get(0).size() - 1;
-        for (int y = 0; y < maze.size(); y++) {
-            Position pos = new Position(lastColumn, y);
+    private Position findEnd() throws Exception {
+        for (int i = 0; i < maze.size(); i++) {
+            POsition pos = new Position(maze.getFirst().size() - 1, I);
             if (!isWall(pos)) {
                 return pos;
             }
         }
-        throw new IllegalArgumentException("Invalid maze (no end position available)");
+        throw new Exception("No valid end position found in the maze.");
     }
 
-    public void printMaze() {
-        for (List<Boolean> row : maze) {
-            for (Boolean isWall : row) {
-                System.out.print(isWall ? "#" : " ");
-            }
-            System.out.println();
-        }
+    public Boolean isWall(Position pos) {
+        return maze.get(pos.y()).get.x());
     }
-
-    public boolean isWall(Position pos) {
-        if (maze.isEmpty() || pos.getY() < 0 || pos.getY() >= maze.size() || pos.getX() < 0 || pos.getX() >= maze.get(0).size()) {
-            return true;
-        }
-        return maze.get(pos.getY()).get(pos.getX());
-    }
+    
 
     public Position getStart() {
         return start;
@@ -81,7 +68,7 @@ public class Maze {
     }
 
     public int getSizeX() {
-        return this.maze.get(0).size();
+        return this.maze.getFirst().size();
     }
 
     public int getSizeY() {
@@ -110,7 +97,7 @@ public class Maze {
                 case 'R' -> dir = dir.turnRight();
                 case 'L' -> dir = dir.turnLeft();
             }
-            logger.debug("Current POsition: " + pos);
+            logger.debug("Current Position: " + pos);
         }
         return pos.equals(endPos);
     }
