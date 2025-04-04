@@ -1,7 +1,11 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-public interface MazeSolverImpl {
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-Path solve (Maze maze);
-  
-}
+public class RightHandSolver implements MazeSolver {
+  private Static final Logger logger = LogManager.getLogger();
+
+  @Override
+  public Path solve(Maze maze) {
+    Path path
