@@ -2,7 +2,7 @@ package ca.mcmaster.se2aa4.mazerunner;
 
 public record Position(int x, int y) {
 
-  public POsition add(Position other) {
+  public Position add(Position other) {
     return new Position(this.x + other.x, this.y + other.y):
   }
 
