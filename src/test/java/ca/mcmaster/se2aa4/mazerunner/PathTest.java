@@ -1,81 +1,75 @@
-import ca.mcmaster.se2aa4.mazerunner.Path;
+package ca.mcmaster.se2aa4.mazerunner;
+
 import org.junit.jupiter.api.Test;
-import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
 
-public class PathTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+class PathTest {
     @Test
-    public void testExpandFactorizedStringPathSimple() {
-        Path path = new Path();
-        String expanded = path.expandFactorizedStringPath("2F3L");
-        assertEquals("FFLLL", expanded);
+    void getCanonicalForm() {
+        Path path = new Path("FLFFFFFRFFRFFLFFFFFFRFFFFLF");
+
+        assertEquals("F L FFFFF R FF R FF L FFFFFF R FFFF L F", path.getCanonicalForm());
     }
 
     @Test
-    public void testExpandFactorizedStringPathWithSingleStep() {
-        Path path = new Path();
-        String expanded = path.expandFactorizedStringPath("F");
-        assertEquals("F", expanded);
+    void getFactorizedForm() {
+        Path path = new Path("FLFFFFFRFFRFFLFFFFFFRFFFFLF");
+
+        assertEquals("F L 5F R 2F R 2F L 6F R 4F L F", path.getFactorizedForm());
     }
 
     @Test
-    public void testExpandFactorizedStringPathWithMixedSteps() {
-        Path path = new Path();
-        String expanded = path.expandFactorizedStringPath("F2L3R");
-        assertEquals("FLLRRR", expanded);
+    void expandedPath() {
+        Path path = new Path("4F 3R L");
+
+        assertEquals("FFFF RRR L", path.getCanonicalForm());
+    }
+
+
+    @Test
+    void expandedPath2() {
+        Path path = new Path("10F 11R");
+
+        assertEquals("FFFFFFFFFF RRRRRRRRRRR", path.getCanonicalForm());
     }
 
     @Test
-    public void testAddStep() {
-        Path path = new Path();
-        path.addStep('F');
-        path.addStep('L');
-        assertEquals(List.of('F', 'L'), path.getPathSteps());
+    void testFactorizedFormWithRepeatingSteps() {
+        Path path = new Path("FFFLLLRRR");
+        assertEquals("3F 3L 3R", path.getFactorizedForm());
     }
 
     @Test
-    public void testGetCanonicalForm() {
-        Path path = new Path("FF LL RRR");
-        String canonical = path.getCanonicalForm();
-        assertEquals("FF LL RRR", canonical);
+    void testCanonicalFormWithSpacesBetweenSteps() {
+        Path path = new Path("F L R F L R");
+        assertEquals("F L R F L R", path.getCanonicalForm());
     }
 
     @Test
-    public void testGetFactorizedForm() {
-        Path path = new Path("FF LL RRR");
-        String factorized = path.getFactorizedForm();
-        assertEquals("2F 2L 3R", factorized);
+    void testExpandPathWithMultipleDigits() {
+        Path path = new Path("12F 5R 3L");
+        assertEquals("FFFFFFFFFFFF RRRRR LLL", path.getCanonicalForm());
+    }
+    
+    @Test
+    void testFactorizedFormEmptyPath() {
+        Path path = new Path(""); // Empty path input
+        assertEquals("", path.getFactorizedForm());
     }
 
     @Test
-    public void testEmptyPathSteps() {
-        Path path = new Path();
-        List<Character> steps = path.getPathSteps();
-        assertTrue(steps.isEmpty());
-    }
-
-    @Test
-    public void testInvalidStepInPathString() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            new Path("FFZ");
-        });
-        assertEquals("IOnstruction 'Z' is invalid. Must be 'F', 'L', or 'R'.", exception.getMessage());
-    }
-
-    @Test
-    public void testInvalidFactorization() {
+    void testInvalidFactorizedPath() {
         Exception exception = assertThrows(StringIndexOutOfBoundsException.class, () -> {
-            new Path("10");
-        });
-        assertNotNull(exception);
+            new Path("F2"); // Factorization missing character
+    });
+    assertNotNull(exception);
     }
 
     @Test
-    public void testPathExpansionWithSpaces() {
-        Path path = new Path("3F 2L");
-        String expanded = path.expandFactorizedStringPath("3F 2L");
-        assertEquals("FFFL L", expanded);
+    void testPathExpansionWithComplexInput() {
+        Path path = new Path("3F 2L R 4F 2R");
+        assertEquals("FFF LL R FFFF RR", path.getCanonicalForm());
     }
-}
 
+}
