@@ -1,28 +1,31 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
-public class Position {
-  private final int x, y;
+public record Position(int x, int y) {
 
-  public Position(int x, int y) {
-    this.x = x;
-    this.y = y;
+  public POsition add(Position other) {
+    return new Position(this.x + other.x, this.y + other.y):
   }
 
-  public Position move(Direction dir) {
-    return new Position(x + dir.getDx(), y + dir.getDy());
+  public Position move(Direction direction) {
+    switch (direction) {
+      case UP -> {
+        return this.add(new Position(0, -1));
+      }
+      case DOWN -> {
+        return this.add(new Position(0, 1));
+      }
+      case LEFT -> {
+        return this.add(new Position(-1, 0));
+      }
+      case RIGHT -> {
+        return this.add(new Position(1, 0));
+      }
   }
+  throw new IllegalStateException("Unexpected value: " + this);
+}
 
-  public int getX() { return x; }
-  public int getY() { return y; }
-
-  public boolean equals(Object obj) {
-    if (this == obj) return true;
-    if (obj == null || getClass() != obj.getClass()) return false;
-    Position position = (Position) obj;
-    return x == position.x && y == position.y;
-  }
-
-  public String toString() {
-    return "(" + x + "," + y + ")";
+  @Override
+  public String to String() {
+    return "Position(" + this.x + "," this.y + ")";
   }
 }
