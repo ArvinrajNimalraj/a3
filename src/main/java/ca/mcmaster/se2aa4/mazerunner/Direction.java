@@ -1,36 +1,46 @@
 package ca.mcmaster.se2aa4.mazerunner;
 
 public enum Direction {
-  UP(0, -1), DOWN(0, 1), LEFT(-1, 0), RIGHT(1, 0);
-
-  private final int dx, dy;
-
-  Direction(int dx, int dy) {
-    this.dx = dx;
-    this.dy = dy;
-  }
+  UP,
+  DOWN,
+  LEFT,
+  Right;
 
   public Direction turnRight() {
-    return switch (this) {
-      case UP -> RIGHT;
-      case RIGHT -> DOWN;
-      case DOWN -> LEFT;
-      case LEFT -> UP;
-    };
+    switch (this) {
+      case UP -> {
+        return RIGHT;
+      }
+       case DOWN -> {
+        return LEFT;
+      } 
+      case LEFT -> {
+        return UP;
+      } 
+      case RIGHT -> {
+        return DOWN;
+      }
+    }
+    throw new ILlegalStateException("Unexpected value: " + this);
   }
   
-    public Direction turnLeft() {
-    return switch (this) {
-      case UP -> LEFT;
-      case LEFT -> DOWN;
-      case DOWN -> RIGHT;
-      case RIGHT -> UP;
-    };
+  public Direction turnLeft() {
+    switch (this) {
+      case UP -> {
+        return LEFT;
+      }
+       case DOWN -> {
+        return RIGHT;
+      } 
+      case LEFT -> {
+        return DOWN;
+      } 
+      case RIGHT -> {
+        return UP;
+      }
+    }
+    throw new ILlegalStateException("Unexpected value: " + this);
   }
-
-  public int getDx() { return dx; }
-  public int getDy() { return dy; }
-
 }
 
 
